@@ -1,7 +1,8 @@
 import heapq
 import sys
-from solucao import No, Problema, carregar_entrada
 import os
+from solucao import No, Problema, carregar_entrada
+from utils import salvar_saida, caminho_saida_por_entrada
 
 def executar_ganancioso(problema):
     no_raiz = problema.iniciar()
@@ -31,51 +32,6 @@ def executar_ganancioso(problema):
 
     return None, estados_contagem
 
-
-def formatar_caminho(no):
-    setas = []
-    atual = no
-    while atual and atual.no_pai:
-        if atual.aresta:
-            setas.append(atual.aresta)
-        atual = atual.no_pai
-    return "".join(reversed(setas))
-
-
-def caminho_saida_por_entrada(caminho_entrada: str) -> str:
-  
-    os.makedirs("resultados", exist_ok=True)
-
-    base = os.path.basename(caminho_entrada)
-    nome, _ext = os.path.splitext(base)
-
-    sufixo = "".join(ch for ch in nome if ch.isdigit())
-
-    if sufixo:
-        saida_nome = f"ganancioso{sufixo}.txt"
-    else:
-        saida_nome = f"ganancioso_{nome}.txt"
-
-    return os.path.join("resultados", saida_nome)
-
-
-def salvar_saida(no_final, n, m, caminho_saida):
-    with open(caminho_saida, "w", encoding="utf-8") as f:
-        if no_final:
-            for i in range(n):
-                linha = no_final.estado[i*m : (i+1)*m]
-                f.write(" ".join(linha) + "\n")
-
-            f.write("Movimentos\n")
-            caminho = formatar_caminho(no_final)
-            f.write(caminho + "\n")
-
-            f.write("Quantidades de movimentos\n")
-            f.write(str(len(caminho)) + "\n")
-        else:
-            f.write("Sem solução encontrada.\n")
-
-
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("Uso: python ganancioso.py grids/entrada8.txt")
@@ -88,7 +44,7 @@ if __name__ == "__main__":
 
         no_solucao, total_visitados = executar_ganancioso(prob)
 
-        saida_path = caminho_saida_por_entrada(sys.argv[1])
+        saida_path = caminho_saida_por_entrada(sys.argv[1], "ganancioso")
         salvar_saida(no_solucao, n, m, saida_path)
 
         if no_solucao:
@@ -96,3 +52,23 @@ if __name__ == "__main__":
             print(f"Resultado salvo em: {saida_path}")
         else:
             print("Não foi possível encontrar uma solução.")
+
+
+#Executar código:
+# python ganancioso.py grids/entrada8.txt
+
+# O objetivo deste algoritmo é encontrar o estado objetivo o mais rápido possível,
+# priorizando estados que parecem estar mais "perto" da solução segundo uma heurística.
+#
+# FUNCIONAMENTO:
+# 1. Utiliza uma FILA DE PRIORIDADE (Min-Heap) baseada apenas no valor da 
+#    HEURÍSTICA (h). Ele não leva em conta o custo (g) percorrido até aqui.
+# 2. HEURÍSTICA (h): É uma função (geralmente Distância de Manhattan) que estima 
+#    a distância de cada caixa até o alvo mais próximo.
+# 3. COMPORTAMENTO "MÍOPE": O algoritmo é chamado de "ganancioso" porque ele 
+#    sempre escolhe o caminho que parece melhor no curto prazo, sem considerar 
+#    se aquele movimento foi caro ou se levará a um beco sem saída.
+# 4. CONTROLE DE VISITADOS: Utiliza um conjunto (set) de IDs para garantir que 
+#    cada configuração do tabuleiro seja explorada apenas uma vez.
+# 5. VANTAGEM VS DESVANTAGEM: Geralmente é muito mais rápido e visita menos 
+#    estados que o Dijkstra, porém NÃO GARANTE a solução de custo mínimo.
