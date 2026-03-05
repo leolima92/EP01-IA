@@ -6,13 +6,13 @@ from solucao import No, Problema, carregar_entrada
 def executar_dijkstra(problema):
     no_raiz = problema.iniciar()
     # Fila de prioridade: (custo, nó)
-    fronteira = [(0, no_raiz)]
+    estados_pendentes = [(0, no_raiz)]
     # Controle de visitados: {id_do_estado: custo_minimo}
     visitados = {no_raiz.id: 0}
     estados_contagem = 0
 
-    while fronteira:
-        custo_atual, no_atual = heapq.heappop(fronteira)
+    while estados_pendentes:
+        custo_atual, no_atual = heapq.heappop(estados_pendentes)
         estados_contagem += 1
 
         if problema.testar_objetivo(no_atual):
@@ -24,7 +24,7 @@ def executar_dijkstra(problema):
         for sucessor in problema.gerar_sucessores(no_atual):
             if sucessor.id not in visitados or sucessor.custo < visitados[sucessor.id]:
                 visitados[sucessor.id] = sucessor.custo
-                heapq.heappush(fronteira, (sucessor.custo, sucessor))
+                heapq.heappush(estados_pendentes, (sucessor.custo, sucessor))
 
     return None, estados_contagem
 
