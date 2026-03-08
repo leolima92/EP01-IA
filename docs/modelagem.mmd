@@ -1,0 +1,50 @@
+flowchart TD
+    classDef estado fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000;
+    classDef acao fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000;
+    classDef decisao fill:#fff3e0,stroke:#ef6c00,stroke-width:2px,color:#000;
+    classDef calculo fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px,color:#000;
+    classDef final fill:#ffebee,stroke:#c62828,stroke-width:2px,color:#000;
+
+    A[Estado inicial do tabuleiro]:::estado --> B[Representar estado:<br/>agente, caixas, alvos, paredes]:::estado
+    B --> C[Gerar ações possíveis]:::acao
+
+    C --> C1[Cima]:::acao
+    C --> C2[Baixo]:::acao
+    C --> C3[Esquerda]:::acao
+    C --> C4[Direita]:::acao
+
+    C1 --> D[Função sucessora]:::acao
+    C2 --> D
+    C3 --> D
+    C4 --> D
+
+    D --> E{Movimento válido?}:::decisao
+    E -- Não --> F[Descartar ação]:::final
+    E -- Sim --> G{Existe caixa na frente?}:::decisao
+
+    G -- Não --> H[Movimento simples]:::acao
+    G -- Sim --> I{Pode empurrar a caixa?}:::decisao
+
+    I -- Não --> F
+    I -- Sim --> J[Movimento com empurrão]:::acao
+
+    H --> K["Calcular custo g(n)"]:::calculo
+    J --> K
+
+    K --> L["Calcular heurística h(n)"]:::calculo
+    L --> M["Calcular f(n)"]:::calculo
+
+    M --> M1["Dijkstra: f(n)=g(n)"]:::calculo
+    M --> M2["Greedy: f(n)=h(n)"]:::calculo
+    M --> M3["A*: f(n)=g(n)+h(n)"]:::calculo
+
+    M1 --> N[Inserir na fronteira]:::estado
+    M2 --> N
+    M3 --> N
+
+    N --> O[Selecionar próximo estado]:::estado
+    O --> P{Estado objetivo?}:::decisao
+
+    P -- Não --> C
+    P -- Sim --> Q[Reconstruir caminho ótimo/encontrado]:::final
+    Q --> R[Exibir ações, custo e estados visitados]:::final
