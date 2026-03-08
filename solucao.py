@@ -39,6 +39,8 @@ class Problema:
         indices_caixas = [i for i, x in enumerate(no.estado) if x in self.valor]
 
         for idx_c in indices_caixas:
+            simbolo_caixa = no.estado[idx_c]
+            peso_caixa = self.valor[simbolo_caixa]
             linha_c, coluna_c = idx_c // self.M, idx_c % self.M
 
             distancias = [
@@ -47,7 +49,9 @@ class Problema:
             ]
 
             if distancias:
-                h_total += min(distancias)
+                menor_distancia = min(distancias)
+                custo_estimado = menor_distancia * (1 + peso_caixa)
+                h_total += custo_estimado
 
         return h_total
 
