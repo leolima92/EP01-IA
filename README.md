@@ -33,9 +33,9 @@ Diferente de buscas uniformes, aqui cada ação possui um custo específico base
 
 A heurística estima a distância que falta para atingir o objetivo. Utilizamos a **Soma das Distâncias de Manhattan**.
 
-* Para cada caixa no mapa, calculamos a distância entre sua posição atual $(r_c, c_c)$ e a posição do alvo mais próximo $(r_a, c_a)$:
+* Para cada caixa no mapa, calculamos a distância entre sua posição atual $(linha_c, coluna_c)$ e a posição do alvo mais próximo $(linha_a, coluna_a)$:
 
-$$h(n) = |r_c - r_a| + |c_c - c_a|$$
+$$h(n) = |linha_c - linha_a| + |coluna_c - coluna_a|$$
 
 
 * A heurística total é a soma dessas distâncias para todas as caixas. Isso fornece ao algoritmo uma "bússola" de qual estado parece estar mais perto da vitória.
