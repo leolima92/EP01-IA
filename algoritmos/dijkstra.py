@@ -1,8 +1,8 @@
 import heapq
 import sys
 import os
-from solucao import No, Problema, carregar_entrada
-from utils import salvar_saida, caminho_saida_por_entrada
+from core.solucao import No, Problema, carregar_entrada
+from core.utils import salvar_saida, caminho_saida_por_entrada
 
 def executar_dijkstra(problema):
     no_raiz = problema.iniciar()
@@ -34,23 +34,30 @@ if __name__ == "__main__":
         print("Uso: python dijkstra.py grids/entrada8.txt")
         sys.exit(1)
 
-    grid, n, m = carregar_entrada(sys.argv[1])
+    caminho_grid = sys.argv[1]
+
+    grid, n, m = carregar_entrada(caminho_grid)
+
     if grid:
         prob = Problema(grid, n, m)
-        print(f"Buscando solução para {sys.argv[1]} com Dijkstra...")
-        
+
+        print(f"Buscando solução para {caminho_grid} com Dijkstra...")
+
         no_solucao, total_visitados = executar_dijkstra(prob)
 
-        saida_path = caminho_saida_por_entrada(sys.argv[1], "dijkstra")
+        saida_path = caminho_saida_por_entrada(caminho_grid, "dijkstra")
+
         salvar_saida(no_solucao, n, m, saida_path)
-        
+
+        print(f"Estados visitados: {total_visitados}")
+
         if no_solucao:
-            print(f"Sucesso! Estados visitados: {total_visitados}")
             print(f"Custo total: {no_solucao.custo}")
             print(f"Resultado salvo em: {saida_path}")
         else:
             print("Não foi possível encontrar uma solução.")
-
+            print(f"Arquivo de saída gerado em: {saida_path}")
+            
 
 #Executar código:
 # python dijkstra.py grids/entrada8.txt
