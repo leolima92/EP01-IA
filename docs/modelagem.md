@@ -1,11 +1,4 @@
 # Modelagem do Problema
-
-## Visão geral
-
-Este projeto modela um problema de busca em espaço de estados inspirado em Sokoban ponderado. O ambiente é um tabuleiro em grade onde existe um agente, caixas com pesos diferentes, alvos, paredes e espaços livres.
-
-O objetivo é mover todas as caixas até os alvos com o menor custo possível.
-
 ---
 
 ## Representação dos estados
