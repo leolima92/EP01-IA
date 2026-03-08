@@ -39,10 +39,10 @@ class Problema:
         indices_caixas = [i for i, x in enumerate(no.estado) if x in self.valor]
 
         for idx_c in indices_caixas:
-            r_c, c_c = idx_c // self.M, idx_c % self.M
+            linha_c, coluna_c = idx_c // self.M, idx_c % self.M
 
             distancias = [
-                abs(r_c - (idx_a // self.M)) + abs(c_c - (idx_a % self.M))
+                abs(linha_c - (idx_a // self.M)) + abs(coluna_c - (idx_a % self.M)) #distancia horizontal + distancia vertical
                 for idx_a in self.indices_alvos
             ]
 
