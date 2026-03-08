@@ -1,7 +1,7 @@
 import heapq
 import sys
-from solucao import No, Problema, carregar_entrada
-from utils import salvar_saida, caminho_saida_por_entrada
+from core.solucao import No, Problema, carregar_entrada
+from core.utils import salvar_saida, caminho_saida_por_entrada
 
 def executar_a_estrela(problema):
     no_raiz = problema.iniciar()
@@ -40,23 +40,29 @@ if __name__ == "__main__":
         sys.exit(1)
 
     grid, n, m = carregar_entrada(sys.argv[1])
+
     if grid:
         prob = Problema(grid, n, m)
-        print(f"Buscando solução para {sys.argv[1]} com A-Estrela...")
+
+        print(f"Buscando solução para {sys.argv[1]} com A*...")
 
         no_solucao, total_visitados = executar_a_estrela(prob)
 
-        saida_path = caminho_saida_por_entrada(sys.argv[1], "a_estrela") 
+        saida_path = caminho_saida_por_entrada(sys.argv[1], "a_estrela")
+
         salvar_saida(no_solucao, n, m, saida_path)
 
         if no_solucao:
-            print(f"Sucesso! Estados visitados: {total_visitados}")
+            print("Sucesso!")
+            print(f"Estados visitados: {total_visitados}")
+            print(f"Custo total: {no_solucao.custo}")
             print(f"Resultado salvo em: {saida_path}")
         else:
             print("Não foi possível encontrar uma solução.")
+            print(f"Estados visitados: {total_visitados}")
 
 #Executar código:
-# python a_estrela.py grids/entrada8.txt
+# python -m algoritmos.a_estrela grids/entrada8.txt
 
 # O objetivo deste algoritmo é encontrar o caminho de custo mínimo de forma 
 # inteligente, unindo a precisão do Dijkstra com a velocidade do Ganancioso.
