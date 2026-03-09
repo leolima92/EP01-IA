@@ -69,27 +69,33 @@ Uma heurística é **admissível** se ela nunca superestima o custo real: $$h(n)
 * Portanto, $h(n)$ sempre será uma estimativa "otimista", o que garante que, ao usar o A*, encontraremos a solução ótima.
 
 ## Estudo de caso
-
+**Todos os dados abaixo estão disponíveis dentro dos .txt da pasta de resultados**
 ### **Dijkstra**
-Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos
-:--------:|:------:|:------:|:------:|
-| 8x8 | 0,0339 | 3514| 34 |
-| 16x16 | 608,0474 | 3.045.566 | 78 |
-| 24x24 | Timeout (30min) | --- | --- |
-| 64x64 | Crash/Limite de memória| --- | --- |
+Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos | Custo Total 
+:--------:|:------:|:------:|:------:|:------:|
+| 8x8 | 0,0339 | 3514| 34 | 27
+| 16x16 | 608,0474 | 3.045.566 | 78 | 69
+| 24x24 | Timeout (30min) | --- | --- | ---
+| 64x64 | Crash/Limite de memória| --- | --- | ---
+
+Analisando a tabela do algoritmo de Dijkstra podemos notar algumas coisas. Em primeiro momento como os estados pulam de 3.514 para mais de três milhões quando a área do grid somente quadruplicou. Isso se deve pela falta de heurística para guiar o algoritmo, fazendo com que todas as direções sejam exploradas e o tempo passe de 0,03 segundos para pouco mais de 10 minutos. Podemos observar que a partir do grid 24x24, o algoritmo começa a consumir muita a memória, de forma insustentável para o cálculo. Nos testes realizados tivemos os seguintes resultados:
+* 24x24 - Código rodando por cerca de 30 minutos até dar timeout pelo terminal
+* 64 x 64 - Crashar a máquina de duas pessoas diferentes do grupo, forçando o reiniciamento por causa do consumo de memória RAM. Um dos computares tem 8GB de RAM e o outro 32GB.
 
 ### **Ganancioso**
-Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos
-:--------:|:------:|:------:|:------:|
-| 8x8 | 0,0027 | 141| 74 |
-| 16x16 | 0,0105 | 183 | 78 |
-| 24x24 | 63,0302 | 544.216 | 204 |
-| 64x64 | 2,617 | 3822 | 438 |
+Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos | Custo Total
+:--------:|:------:|:------:|:------:|:------:|
+| 8x8 | 0,0027 | 141| 74 | 49
+| 16x16 | 0,0105 | 183 | 78 | 69
+| 24x24 | 63,0302 | 544.216 | 204 | 161
+| 64x64 | 2,617 | 3822 | 438 | 377
+
+
 
 ### **A***
-Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos
-:--------:|:------:|:------:|:------:|
-| 8x8 | 0,0039 | 251 | 34 |
-| 16x16 | 0,5963 | 13.448 | 78 |
-| 24x24 | 879,0184 | 1.074.657 | 166 |
-| 64x64 | Crash/Limite de memória| --- | --- |
+Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos | Custo Total
+:--------:|:------:|:------:|:------:|:------:|
+| 8x8 | 0,0039 | 251 | 34 | 27
+| 16x16 | 0,5963 | 13.448 | 78 | 69
+| 24x24 | 879,0184 | 1.074.657 | 166 | 142
+| 64x64 | Crash/Limite de memória| --- | --- | ---

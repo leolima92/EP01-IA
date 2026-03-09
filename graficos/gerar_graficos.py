@@ -1,0 +1,1 @@
+#geração dos gráficos de estudo de caso
