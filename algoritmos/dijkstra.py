@@ -1,6 +1,6 @@
 import heapq
 import sys
-import os
+import time
 from core.solucao import No, Problema, carregar_entrada
 from core.utils import salvar_saida, caminho_saida_por_entrada
 
@@ -43,19 +43,26 @@ if __name__ == "__main__":
 
         print(f"Buscando solução para {caminho_grid} com Dijkstra...")
 
+        inicio = time.perf_counter()
+
         no_solucao, total_visitados = executar_dijkstra(prob)
+
+        fim = time.perf_counter()
+        tempo_execucao = fim - inicio
 
         saida_path = caminho_saida_por_entrada(caminho_grid, "dijkstra")
 
-        salvar_saida(no_solucao, n, m, saida_path)
+        salvar_saida(no_solucao, n, m, saida_path, tempo_execucao)
 
         print(f"Estados visitados: {total_visitados}")
 
         if no_solucao:
             print(f"Custo total: {no_solucao.custo}")
+            print(f"Tempo de execução: {tempo_execucao:.4f} segundos")
             print(f"Resultado salvo em: {saida_path}")
         else:
             print("Não foi possível encontrar uma solução.")
+            print(f"Tempo de execução: {tempo_execucao:.4f} segundos")
             print(f"Arquivo de saída gerado em: {saida_path}")
             
 

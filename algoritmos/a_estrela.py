@@ -1,5 +1,6 @@
 import heapq
 import sys
+import time
 from core.solucao import No, Problema, carregar_entrada
 from core.utils import salvar_saida, caminho_saida_por_entrada
 
@@ -46,19 +47,26 @@ if __name__ == "__main__":
 
         print(f"Buscando solução para {sys.argv[1]} com A*...")
 
+        inicio = time.perf_counter()
+
         no_solucao, total_visitados = executar_a_estrela(prob)
 
+        fim = time.perf_counter()
+        tempo_execucao = fim - inicio
+        
         saida_path = caminho_saida_por_entrada(sys.argv[1], "a_estrela")
 
-        salvar_saida(no_solucao, n, m, saida_path)
+        salvar_saida(no_solucao, n, m, saida_path, tempo_execucao)
 
         if no_solucao:
             print("Sucesso!")
             print(f"Estados visitados: {total_visitados}")
             print(f"Custo total: {no_solucao.custo}")
+            print(f"Tempo de execução: {tempo_execucao:.4f} segundos")
             print(f"Resultado salvo em: {saida_path}")
         else:
             print("Não foi possível encontrar uma solução.")
+            print(f"Tempo de execução: {tempo_execucao:.4f} segundos")
             print(f"Estados visitados: {total_visitados}")
 
 #Executar código:

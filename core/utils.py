@@ -22,7 +22,7 @@ def caminho_saida_por_entrada(caminho_entrada: str, algoritmo: str) -> str:
 
     return os.path.join(pasta_algoritmo, saida_nome)
 
-def salvar_saida(no_final, n, m, caminho_saida):
+def salvar_saida(no_final, n, m, caminho_saida, tempo_execucao=None):
     with open(caminho_saida, "w", encoding="utf-8") as f:
         if no_final:
             for i in range(n):
@@ -38,5 +38,9 @@ def salvar_saida(no_final, n, m, caminho_saida):
 
             f.write("\nCusto total\n")
             f.write(str(no_final.custo) + "\n")
+
+            if tempo_execucao is not None:
+                f.write("\nTempo de execução (segundos)\n")
+                f.write(f"{tempo_execucao:.4f}\n")
         else:
             f.write("Sem solução encontrada.\n")
