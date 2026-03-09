@@ -109,3 +109,11 @@ Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos | Custo Total
 Analisando a tabela do algoritmo A* podemos observar que a sua eficiência diminui conforme o tamanho do problema cresce. Ele utiliza a função *f(n) = g(n) + h(n)* onde g(n) é o **custo real** e o **h(n)** é a heurística, assim o algoritmo se direciona pela heurística buscando o menor custo. Nos grids de 8x8 e 16x16, o A* **acha o custo perfeito mais rápido e visitando menos estados do que o algoritmo de Dijkstra**
 Porém o A* sofre da mesma complexidade espacial do Dijkstra. Para encontrar o melhor caminho ele precisa manter na memória todos os estados visitados. No grid de 24x24, ele demorou cerca de 18 minutos e avaliou mais de um milhão de estados para achar o melhor caminho. Na maior grid que temos, ele causou um consumo de memória absurdo e um crash, semelhante ao algoritmo de DIjkstra, provando assim que esses algoritmos de busca podem apresentar limitações práticas em ambientes complexos com grandes combinações de estados.
 
+## Gráficos
+*Ambos gerados pelo arquivo gerar_graficos.py na subpasta de gráficos, é necessário a instalação do matplotlib pelo pip*
+### Tempo de execução vs Tamanho do Grid
+![Estudo de caso: tempo de execução vs tamanho do grid](graficos/grafico_tempo.png)
+
+
+### Custo do caminho
+![Estudo de caso: qualidade da solução (custo do caminho)](graficos/grafico_custo.png)
