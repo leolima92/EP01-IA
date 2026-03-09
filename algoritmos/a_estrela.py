@@ -69,25 +69,3 @@ if __name__ == "__main__":
             print(f"Tempo de execução: {tempo_execucao:.4f} segundos")
             print(f"Estados visitados: {total_visitados}")
 
-#Executar código:
-# python -m algoritmos.a_estrela grids/entrada8.txt
-
-# O objetivo deste algoritmo é encontrar o caminho de custo mínimo de forma 
-# inteligente, unindo a precisão do Dijkstra com a velocidade do Ganancioso.
-#
-# FUNCIONAMENTO:
-# 1. Utiliza uma FILA DE PRIORIDADE (Min-Heap) baseada na função de avaliação 
-#    f(n) = g(n) + h(n). Ele avalia tanto o custo real acumulado (g) quanto a 
-#    estimativa da heurística (h) para o alvo.
-# 2. CUSTO E HEURÍSTICA: O custo (g) é PONDERADO (passos vazios = 1; empurrar 
-#    caixa = 1 + W). A heurística (h) estima o esforço restante. Como a heurística 
-#    é admissível (nunca superestima o custo real), o A* garante a solução ótima.
-# 3. CONTROLE DE VISITADOS: Utiliza um dicionário para mapear o ID de cada estado 
-#    ao seu menor custo (g) já encontrado. Se o algoritmo esbarrar em um estado 
-#    já visitado, mas por um caminho mais barato, ele atualiza esse custo e 
-#    reaproveita a rota.
-# 4. COMPORTAMENTO: Por olhar o custo real, ele evita as armadilhas do Ganancioso. 
-#    Por usar a heurística, ele foca em ir em direção ao alvo, evitando se 
-#    espalhar cegamente para todos os lados como o Dijkstra.
-# 5. EXTRAÇÃO DE RESULTADO: Ao atingir o objetivo, o algoritmo reconstrói a 
-#    sequência de movimentos (setas) retrocedendo pelos nós pais.

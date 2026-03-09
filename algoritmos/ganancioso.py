@@ -68,21 +68,3 @@ if __name__ == "__main__":
             print(f"Tempo de execução: {tempo_execucao:.4f} segundos")
             print(f"Arquivo de saída gerado em: {saida_path}")
 
-#Executar código:
-# python -m algoritmos.ganancioso grids/entrada8.txt
-
-# O objetivo deste algoritmo é encontrar o estado objetivo o mais rápido possível,
-# priorizando estados que parecem estar mais "perto" da solução segundo uma heurística.
-#
-# FUNCIONAMENTO:
-# 1. Utiliza uma FILA DE PRIORIDADE (Min-Heap) baseada apenas no valor da 
-#    HEURÍSTICA (h). Ele não leva em conta o custo (g) percorrido até aqui.
-# 2. HEURÍSTICA (h): É uma função (geralmente Distância de Manhattan) que estima 
-#    a distância de cada caixa até o alvo mais próximo.
-# 3. COMPORTAMENTO "MÍOPE": O algoritmo é chamado de "ganancioso" porque ele 
-#    sempre escolhe o caminho que parece melhor no curto prazo, sem considerar 
-#    se aquele movimento foi caro ou se levará a um beco sem saída.
-# 4. CONTROLE DE VISITADOS: Utiliza um conjunto (set) de IDs para garantir que 
-#    cada configuração do tabuleiro seja explorada apenas uma vez.
-# 5. VANTAGEM VS DESVANTAGEM: Geralmente é muito mais rápido e visita menos 
-#    estados que o Dijkstra, porém NÃO GARANTE a solução de custo mínimo.

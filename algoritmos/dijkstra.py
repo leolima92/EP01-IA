@@ -66,21 +66,3 @@ if __name__ == "__main__":
             print(f"Arquivo de saída gerado em: {saida_path}")
             
 
-#Executar código:
-# python dijkstra.py grids/entrada8.txt
-
-
-
-# O objetivo deste algoritmo é encontrar o caminho de custo mínimo entre o
-# estado inicial e o estado objetivo (todas as caixas nos alvos).
-#
-# FUNCIONAMENTO:
-# 1. Utiliza uma FILA DE PRIORIDADE (Min-Heap) para garantir que o próximo 
-#    nó a ser explorado seja sempre o de menor custo acumulado (g).
-# 2. O custo é PONDERADO: passos vazios custam 1, enquanto empurrar caixas 
-#    adiciona o peso da caixa ao custo do movimento (1 + W).
-# 3. CONTROLE DE VISITADOS: Utiliza um dicionário para mapear o ID de cada 
-#    estado ao seu menor custo encontrado. Isso evita ciclos e garante que 
-#    não processemos o mesmo estado com um custo maior.
-# 4. EXTRACAO DE RESULTADO: Ao atingir o objetivo, o algoritmo reconstrói 
-#    a sequência de movimentos (setas) retrocedendo pelos nós pais.
