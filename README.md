@@ -70,32 +70,42 @@ Uma heurística é **admissível** se ela nunca superestima o custo real: $$h(n)
 
 ## Estudo de caso
 **Todos os dados abaixo estão disponíveis dentro dos .txt da pasta de resultados**
+
 ### **Dijkstra**
 Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos | Custo Total 
 :--------:|:------:|:------:|:------:|:------:|
-| 8x8 | 0,0339 | 3514| 34 | 27
-| 16x16 | 608,0474 | 3.045.566 | 78 | 69
+| 8x8 | 0,0331 | 3.514| 17 | 27
+| 16x16 | 535.2873 | 3.045.566 | 39 | 69
 | 24x24 | Timeout (30min) | --- | --- | ---
 | 64x64 | Crash/Limite de memória| --- | --- | ---
 
-Analisando a tabela do algoritmo de Dijkstra podemos notar algumas coisas. Em primeiro momento como os estados pulam de 3.514 para mais de três milhões quando a área do grid somente quadruplicou. Isso se deve pela falta de heurística para guiar o algoritmo, fazendo com que todas as direções sejam exploradas e o tempo passe de 0,03 segundos para pouco mais de 10 minutos. Podemos observar que a partir do grid 24x24, o algoritmo começa a consumir muita a memória, de forma insustentável para o cálculo. Nos testes realizados tivemos os seguintes resultados:
+Analisando a tabela do algoritmo de Dijkstra podemos notar algumas coisas. Em primeiro momento como os estados pulam de 3.514 para mais de três milhões quando a área do grid somente quadruplicou. Isso se deve pela falta de heurística para guiar o algoritmo, fazendo com que todas as direções sejam exploradas e o tempo passe de 0,03 segundos para quase 10 minutos. Podemos observar que a partir do grid 24x24, o algoritmo começa a consumir muita a memória, de forma insustentável para o cálculo. Nos testes realizados tivemos os seguintes resultados:
 * 24x24 - Código rodando por cerca de 30 minutos até dar timeout pelo terminal
 * 64 x 64 - Crashar a máquina de duas pessoas diferentes do grupo, forçando o reiniciamento por causa do consumo de memória RAM. Um dos computares tem 8GB de RAM e o outro 32GB.
 
 ### **Ganancioso**
 Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos | Custo Total
 :--------:|:------:|:------:|:------:|:------:|
-| 8x8 | 0,0027 | 141| 74 | 49
-| 16x16 | 0,0105 | 183 | 78 | 69
-| 24x24 | 63,0302 | 544.216 | 204 | 161
-| 64x64 | 2,617 | 3822 | 438 | 377
+| 8x8 | 0,0023 | 141| 37 | 49
+| 16x16 | 0,0094 | 183 | 39 | 69
+| 24x24 | 56,9163 | 544.216 | 102 | 161
+| 64x64 | 2,5806 | 3809 | 219 | 377
 
+Analisando a tabela do algoritmo Ganancioso, ou Greedy, podemos perceber como o foco apenas na heurística faça com que ele seja mais rápido que os outros dois e visite menos estados. Porém, por não considerar o caminho real, ele entrega soluções mais caras que os demais algoritmos na maioria dos casos.  
+**Comparação de custo**
+* **8x8**: 27 (A* e Dijkstra) x 49 (Ganancioso)
+* **24x24**: 142 (A*) x 161 (Ganancioso)  
 
+Outra coisa que chamou a atenção no nosso experimento foi a discrepância de tempo e estado entre os grids de 24x24 e 64x64. Isso se deve provavelmente pela disposição da grid, onde uma das caixax está do lado esquerdo com o agente e o objetivo está a direita, com paredes no meio. O algoritmo provavelmente achou um gargalo ao tentar atravessar as paredes, fazendo com que ele visitasse muitos estados e demorasse cerca de um minuto. No grid de 64, não existe paredes que formem barreiras diretamente na linha do objetivo e da caixa, fazendo com que o algoritmo seja executado bem rápido.
 
 ### **A***
 Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos | Custo Total
 :--------:|:------:|:------:|:------:|:------:|
-| 8x8 | 0,0039 | 251 | 34 | 27
-| 16x16 | 0,5963 | 13.448 | 78 | 69
-| 24x24 | 879,0184 | 1.074.657 | 166 | 142
+| 8x8 | 0,0050 | 251 | 17 | 27
+| 16x16 | 0,5819 | 13.448 | 39 | 69
+| 24x24 | 1099,8640 | 1.074.736 | 83 | 142
 | 64x64 | Crash/Limite de memória| --- | --- | ---
+
+Analisando a tabela do algoritmo A* podemos observar que a sua eficiência diminui conforme o tamanho do problema cresce. Ele utiliza a função *f(n) = g(n) + h(n)* onde g(n) é o **custo real** e o **h(n)** é a heurística, assim o algoritmo se direciona pela heurística buscando o menor custo. Nos grids de 8x8 e 16x16, o A* **acha o custo perfeito mais rápido e visitando menos estados do que o algoritmo de Dijkstra**
+Porém o A* sofre da mesma complexidade espacial do Dijkstra. Para encontrar o melhor caminho ele precisa manter na memória todos os estados visitados. No grid de 24x24, ele demorou cerca de 18 minutos e avaliou mais de um milhão de estados para achar o melhor caminho. Na maior grid que temos, ele causou um consumo de memória absurdo e um crash, semelhante ao algoritmo de DIjkstra, provando assim que esses algoritmos de busca podem apresentar limitações práticas em ambientes complexos com grandes combinações de estados.
+
