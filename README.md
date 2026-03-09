@@ -1,7 +1,7 @@
 # Projeto de Busca: Agente e Caixas (Sokoban Ponderado)
 O projeto implementa algoritmos de busca para resolver um quebra-cabeça onde um agente deve empurrar caixas numeradas até áreas específicas. O diferencial deste modelo é que cada caixa possui um "peso" que influencia o custo do movimento.
 
-## Como rodar os algoritmos
+## Como rodar os algoritmos e funcionamento
 Na pasta do repositório clonado, você vai escolher o algoritmo e a grid desejada segundo o seguinte formato:
 
 `python -m algoritmos.{algoritmo} grids/entrada{tamanho}.txt` 
@@ -11,6 +11,14 @@ Exemplo:
 * `python -m algoritmos.dijkstra grids/entrada8.txt`
 * `python -m algoritmos.ganancioso grids/entrada64.txt`
 
+Depois de rodar o algoritmo desejado na grid desejada, depois de um tempo (que varia conforme algoritmo e grid), ele vai mostrar uma mensagem no terminal
+*Alguns algoritmos não desempenham bem conforme o tamanho da grid, uma relação com tempo observado e desempenho está no final do README, na aba de Estudo de Caso*
+
+![Mensagem terminal](img/mensagem-terminal.png)
+
+E o resultado será salvo dentro da pasta de Resultados, na subpasta do respectivo algoritmo
+
+![Resultado exemplo](img/exemplo-resultado.png)
 
 ## Modelagem
 
