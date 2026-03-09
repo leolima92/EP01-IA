@@ -23,3 +23,6 @@ Quantidade de movimentos
 
 Custo total
 69
+
+Tempo de execução (segundos)
+464.3068
