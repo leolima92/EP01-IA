@@ -6,7 +6,18 @@
 🧱 1️⃣ 🧱 ⚪️ 🧱 ⚪️ ⚪️ 🧱
 🧱 ⚪️ ⚪️ ⚪️ ⚪️ ⚪️ ⚪️ 🧱
 🧱 🧱 🧱 🧱 🧱 🧱 🧱 🧱
+
 Movimentos
 ➡️➡️⬇️⬅️⬆️⬅️⬇️⬇️⬇️➡️➡️➡️➡️⬇️➡️⬆️⬆️
-Quantidades de movimentos
-34
+
+Quantidade de movimentos
+17
+
+Custo total
+27
+
+Tempo de execução (segundos)
+0.0050
+
+Estados visitados
+251

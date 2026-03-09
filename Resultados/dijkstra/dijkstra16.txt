@@ -19,7 +19,13 @@ Movimentos
 ⬇️⬇️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬅️⬇️⬇️⬅️⬅️⬇️⬇️⬇️⬇️➡️➡️➡️➡️➡️➡️➡️➡️➡️➡️
 
 Quantidade de movimentos
-78
+39
 
 Custo total
 69
+
+Tempo de execução (segundos)
+535.2873
+
+Estados visitados
+3045566
