@@ -34,7 +34,12 @@ def salvar_saida(no_final, n, m, caminho_saida, tempo_execucao=None, estados_vis
             f.write(caminho + "\n")
 
             f.write("\nQuantidade de movimentos\n")
-            f.write(str(len(caminho)) + "\n")
+            qtd_movimentos = 0
+            atual = no_final
+            while atual and atual.no_pai:
+                qtd_movimentos += 1
+                atual = atual.no_pai   
+            f.write(str(qtd_movimentos) + "\n")
 
             f.write("\nCusto total\n")
             f.write(str(no_final.custo) + "\n")
