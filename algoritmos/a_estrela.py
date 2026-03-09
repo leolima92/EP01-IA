@@ -56,7 +56,7 @@ if __name__ == "__main__":
         
         saida_path = caminho_saida_por_entrada(sys.argv[1], "a_estrela")
 
-        salvar_saida(no_solucao, n, m, saida_path, tempo_execucao)
+        salvar_saida(no_solucao, n, m, saida_path, tempo_execucao, total_visitados)
 
         if no_solucao:
             print("Sucesso!")

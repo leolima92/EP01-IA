@@ -1,6 +1,8 @@
 # Projeto de Busca: Agente e Caixas (Sokoban Ponderado)
 O projeto implementa algoritmos de busca para resolver um quebra-cabeça onde um agente deve empurrar caixas numeradas até áreas específicas. O diferencial deste modelo é que cada caixa possui um "peso" que influencia o custo do movimento.
 
+## Modelagem
+
 ### 1. Função Sucessora (`gerar_sucessores`)
 
 A função sucessora é responsável por determinar quais estados podem ser alcançados a partir do estado atual.
@@ -65,3 +67,29 @@ Uma heurística é **admissível** se ela nunca superestima o custo real: $$h(n)
 
 
 * Portanto, $h(n)$ sempre será uma estimativa "otimista", o que garante que, ao usar o A*, encontraremos a solução ótima.
+
+## Estudo de caso
+
+### **Dijkstra**
+Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos
+:--------:|:------:|:------:|:------:|
+| 8x8 | 0,0339 | 3514| 34 |
+| 16x16 | 608,0474 | 3.045.566 | 78 |
+| 24x24 | Timeout (30min) | --- | --- |
+| 64x64 | Crash/Limite de memória| --- | --- |
+
+### **Ganancioso**
+Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos
+:--------:|:------:|:------:|:------:|
+| 8x8 | 0,0027 | 141| 74 |
+| 16x16 | 0,0105 | 183 | 78 |
+| 24x24 | 63,0302 | 544.216 | 204 |
+| 64x64 | 2,617 | 3822 | 438 |
+
+### **A***
+Tamanho Grid  | Tempo (s)| Estados Visitados | Movimentos
+:--------:|:------:|:------:|:------:|
+| 8x8 | 0,0039 | 251 | 34 |
+| 16x16 | 0,5963 | 13.448 | 78 |
+| 24x24 | 879,0184 | 1.074.657 | 166 |
+| 64x64 | Crash/Limite de memória| --- | --- |

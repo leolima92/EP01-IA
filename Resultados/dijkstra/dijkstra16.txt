@@ -25,4 +25,7 @@ Custo total
 69
 
 Tempo de execução (segundos)
-464.3068
+600.9084
+
+Estados visitados
+3045566

@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
         saida_path = caminho_saida_por_entrada(caminho_grid, "ganancioso")
 
-        salvar_saida(no_solucao, n, m, saida_path, tempo_execucao)
+        salvar_saida(no_solucao, n, m, saida_path, tempo_execucao, total_visitados)
 
         print(f"Estados visitados: {total_visitados}")
 

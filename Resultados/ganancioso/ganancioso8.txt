@@ -17,4 +17,7 @@ Custo total
 49
 
 Tempo de execução (segundos)
-0.0036
+0.0027
+
+Estados visitados
+141
