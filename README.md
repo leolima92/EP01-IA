@@ -12,6 +12,7 @@ Exemplo:
 * `python -m algoritmos.ganancioso grids/entrada64.txt`
 
 Depois de rodar o algoritmo desejado na grid desejada, depois de um tempo (que varia conforme algoritmo e grid), ele vai mostrar uma mensagem no terminal
+
 *Alguns algoritmos não desempenham bem conforme o tamanho da grid, uma relação com tempo observado e desempenho está no final do README, na aba de Estudo de Caso*
 
 ![Mensagem terminal](img/mensagem-terminal.png)
